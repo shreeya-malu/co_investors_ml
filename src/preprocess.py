@@ -22,8 +22,10 @@ def preprocess_dataset(df):
     # Split investors (comma-separated)
     df['investors_list'] = df['Investors Name'].apply(lambda x: [normalize_investor(i) for i in str(x).split(',')])
 
-    # If vertical/domain info exists, split it
-    if 'Vertical' in df.columns:
+    # If vertical/domain info exists, split it - check for both 'SubVertical' and 'Vertical' columns
+    if 'SubVertical' in df.columns:
+        df['verticals_list'] = df['SubVertical'].apply(lambda x: [v.strip() for v in str(x).split(',')] if pd.notna(x) else [])
+    elif 'Vertical' in df.columns:
         df['verticals_list'] = df['Vertical'].apply(lambda x: [v.strip() for v in str(x).split(',')] if pd.notna(x) else [])
     else:
         df['verticals_list'] = [[] for _ in range(len(df))]

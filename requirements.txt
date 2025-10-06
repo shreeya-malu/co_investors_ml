@@ -1,0 +1,8 @@
+Flask==2.3.2
+pandas==2.2.2
+numpy==1.26.4
+mlxtend==0.21.0
+networkx==3.2
+python-louvain==0.16
+scikit-learn==1.3.2
+joblib==1.3.2
